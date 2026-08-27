@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Finish connecting TikTok · Epic Fury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/site.css">
+<link rel="icon" href="/icon.png">
+<style>
+  .code-box {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1rem 1.1rem;
+    margin: 0 0 1rem;
+  }
+  .code-label {
+    font-family: var(--display);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin: 0 0 .6rem;
+  }
+  .code-val {
+    font-family: var(--mono);
+    font-size: .84rem;
+    line-height: 1.5;
+    word-break: break-all;
+    color: var(--ink);
+    margin: 0 0 .9rem;
+    user-select: all;
+  }
+  button {
+    font-family: var(--display);
+    font-size: .85rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--blue);
+    border: none;
+    border-radius: 5px;
+    padding: .6rem 1.1rem;
+    cursor: pointer;
+  }
+  button:hover { filter: brightness(1.08); }
+  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  button[data-done] { background: #1a8f5a; }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 1rem; }
+  .steps li {
+    counter-increment: s;
+    display: flex;
+    gap: .8rem;
+    margin-bottom: .7rem;
+  }
+  .steps li::before {
+    content: counter(s);
+    font-family: var(--mono);
+    font-size: .75rem;
+    color: var(--blue);
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    width: 1.6rem; height: 1.6rem;
+    display: grid; place-items: center;
+    flex: none;
+  }
+  .err { color: #c0392b; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .err { color: #ff8b7a; }
+  }
+  :root[data-theme="dark"] .err { color: #ff8b7a; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="mark" href="/">
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#11141c"/>
+        <path d="M22 18 L44 32 L22 46 Z" fill="#5a9cf8"/>
+        <rect x="18" y="50" width="28" height="4" rx="2" fill="#f0f2f6"/>
+      </svg>
+      <b>Epic Fury</b>
+    </a>
+  </div>
+
+  <p class="eyebrow">TikTok</p>
+  <h1 id="head">Almost there</h1>
+  <p class="lede" id="lede">Copy the line below and paste it into Clip Studio to finish connecting your account.</p>
+
+  <div id="ok">
+    <div class="code-box">
+      <p class="code-label">Paste this into Clip Studio</p>
+      <p class="code-val" id="val">reading…</p>
+      <button id="copy" type="button">Copy</button>
+    </div>
+
+    <ol class="steps">
+      <li>Go back to Clip Studio — it is waiting on the <b>Connect TikTok</b> screen.</li>
+      <li>Paste the line above into the box.</li>
+      <li>That is it. You can close this page.</li>
+    </ol>
+
+    <div class="callout">
+      <p>This line is single-use and expires within minutes. It cannot be used without Clip Studio's own secret key, which never leaves the computer the app runs on.</p>
+    </div>
+  </div>
+
+  <div id="bad" hidden>
+    <div class="callout">
+      <p class="err" id="badmsg">TikTok did not return an authorisation code.</p>
+      <p>Start the connection again from inside Clip Studio. If it keeps happening, the app's TikTok settings may need attention.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>Epic Fury Clip Studio</span>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+  </footer>
+
+</div>
+
+<script>
+  // Everything here stays in the page. Nothing is sent anywhere: the code is
+  // shown so it can be pasted into the desktop app, which is what exchanges it.
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var code = q.get("code");
+    var err = q.get("error") || q.get("error_description");
+
+    if (!code) {
+      document.getElementById("ok").hidden = true;
+      document.getElementById("bad").hidden = false;
+      document.getElementById("head").textContent = "That did not work";
+      document.getElementById("lede").textContent =
+        "TikTok sent you back without an authorisation code.";
+      if (err) document.getElementById("badmsg").textContent = "TikTok said: " + err;
+      return;
+    }
+
+    // The app parses the whole URL, so hand over the whole URL.
+    var full = location.href;
+    document.getElementById("val").textContent = full;
+
+    var btn = document.getElementById("copy");
+    btn.addEventListener("click", function () {
+      var done = function () {
+        btn.textContent = "Copied";
+        btn.setAttribute("data-done", "");
+        setTimeout(function () {
+          btn.textContent = "Copy";
+          btn.removeAttribute("data-done");
+        }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(full).then(done, function () {
+          btn.textContent = "Select it and copy";
+        });
+      } else {
+        var r = document.createRange();
+        r.selectNodeContents(document.getElementById("val"));
+        var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = "Press ⌘C to copy";
+      }
+    });
+  })();
+</script>
+</body>
+</html>
