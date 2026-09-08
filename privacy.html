@@ -62,7 +62,8 @@
     <h2><span class="num">3</span> Connected social accounts</h2>
     <p>When a user connects a TikTok, YouTube, Instagram, or Facebook account, that platform asks them directly to approve the connection. We never see or handle their password. The platform returns an access token, which is stored locally as described above and used only to do what the user asked.</p>
     <div class="callout">
-      <p><strong>Nothing is posted without a person choosing to post it.</strong> The app does not publish on a schedule the user has not set, does not post to accounts they have not connected, and does not read their feed, followers, messages, or browsing activity.</p>
+      <p><strong>Nothing is posted without a person choosing to post it.</strong> The app does not publish on a schedule the user has not set, does not post to accounts they have not connected, and does not read their feed, their messages, or their browsing activity.</p>
+      <p>It does read, for the accounts a user connects, that account&rsquo;s own public details and its own performance figures &mdash; see &ldquo;YouTube API Services&rdquo; below, which sets out exactly what is read and why.</p>
     </div>
     <p>A user can disconnect an account at any time from within the app, which deletes the stored token. They can also revoke access from the platform's own settings, which has the same effect.</p>
   </section>
@@ -74,12 +75,47 @@
       <li>We do not use the data for advertising or profiling.</li>
       <li>We do not run third-party analytics or tracking inside the app.</li>
       <li>We do not collect data about anyone other than the team members using the app.</li>
-      <li>We do not access the content of any account beyond what is needed to publish the video a user asked us to publish.</li>
+      <li>We do not access the content of any account beyond what is needed to publish the video a user asked us to publish, and to read back how that account&rsquo;s own videos performed.</li>
+      <li>We do not use Google user data to develop, improve or train generalised AI or machine-learning models.</li>
+      <li>We do not transfer Google user data to anyone, and there is nowhere for it to be transferred to: the app has no server.</li>
     </ul>
   </section>
 
   <section>
-    <h2><span class="num">5</span> Third-party platforms</h2>
+    <h2><span class="num">5</span> YouTube API Services</h2>
+    <p>Epic Fury Clip Studio uses <strong>YouTube API Services</strong>. By connecting a YouTube channel to it you are agreeing to the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>, and Google&rsquo;s <a href="https://policies.google.com/privacy">Privacy Policy</a> describes how Google handles your data.</p>
+
+    <h3>What it asks YouTube for</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Permission</th><th>What it is used for</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>See your YouTube account<br><code>youtube.readonly</code></td>
+            <td>To list the channels a user has connected and the videos on them, so a video published from the app can be matched to the right channel and shown by name rather than by ID.</td>
+          </tr>
+          <tr>
+            <td>See your YouTube Analytics reports<br><code>yt-analytics.readonly</code></td>
+            <td>To read views, watch time, traffic sources and audience figures <em>for that channel&rsquo;s own videos</em>, so the team can see which of their videos worked. Read-only: it cannot change, upload or delete anything.</td>
+          </tr>
+          <tr>
+            <td>Upload videos<br><code>youtube.upload</code></td>
+            <td>Only for channels connected for publishing. A channel can be connected for <strong>analytics only</strong>, and the app then never offers it as somewhere to post and never requests this permission for it.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>What happens to what it reads</h3>
+    <p>The figures are shown to the team member who asked for them and stored in a folder on their own computer, alongside everything else described in section 2. They are not sent to us, because there is no server to send them to. They are not sold, shared, or used for advertising, profiling, or training any model. Nothing read from YouTube is combined with data from anywhere else to build a profile of any viewer, and the app never sees individual viewers &mdash; YouTube reports only aggregate figures.</p>
+    <p>Stored YouTube data is refreshed on each read and is deleted when the account is disconnected or the app&rsquo;s data folder is removed. Nothing read from YouTube is kept for longer than thirty days without being refreshed from the API.</p>
+
+    <h3>Taking it back</h3>
+    <p>A user can disconnect a channel inside the app at any time, which deletes the stored token. They can also revoke the app&rsquo;s access directly from their Google account at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, which has the same effect and does not require the app at all.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span> Third-party platforms</h2>
     <p>When the app publishes a video, it sends that video to the platform the user selected. From that point the platform's own privacy policy governs it:</p>
     <ul>
       <li><a href="https://www.tiktok.com/legal/privacy-policy">TikTok Privacy Policy</a></li>
@@ -90,28 +126,28 @@
   </section>
 
   <section>
-    <h2><span class="num">6</span> Retention and deletion</h2>
+    <h2><span class="num">7</span> Retention and deletion</h2>
     <p>Tokens are kept until the user disconnects the account or revokes access at the platform. Video files stay on their own disk until they delete them. Because the data lives on the user's own machine, deleting it is entirely within their control — removing the app's data folder removes everything the app has stored.</p>
     <p>To request deletion of anything held on their behalf, or to ask what is held, write to <a href="mailto:jack@lukegawne.com">jack@lukegawne.com</a>.</p>
   </section>
 
   <section>
-    <h2><span class="num">7</span> Security</h2>
+    <h2><span class="num">8</span> Security</h2>
     <p>Credential files are written with permissions that restrict them to the user's own operating system account. Where team members access a shared instance over the network, that connection runs over an encrypted private tunnel and requires a password.</p>
   </section>
 
   <section>
-    <h2><span class="num">8</span> Children</h2>
+    <h2><span class="num">9</span> Children</h2>
     <p>The app is a professional tool for the GAWNE team and is not directed to children under 13.</p>
   </section>
 
   <section>
-    <h2><span class="num">9</span> Changes</h2>
+    <h2><span class="num">10</span> Changes</h2>
     <p>If this policy changes, the effective date at the top of this page changes with it.</p>
   </section>
 
   <section>
-    <h2><span class="num">10</span> Contact</h2>
+    <h2><span class="num">11</span> Contact</h2>
     <p>Questions about this policy, or about data held on your behalf: <a href="mailto:jack@lukegawne.com">jack@lukegawne.com</a>.</p>
   </section>
 
