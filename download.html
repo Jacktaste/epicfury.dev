@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download Clip Studio</title>
+<meta name="description" content="Download Epic Fury Clip Studio for Mac. One download with everything it needs inside — install, open, and log in with the name your team gave you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/site.css">
+<link rel="icon" href="/icon.png">
+<style>
+  /* The download card: the one object on this page that needs to stand apart. */
+  .get {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 1.5rem 1.5rem 1.35rem;
+    margin: 0 0 3rem;
+    display: grid;
+    gap: 1rem;
+  }
+  .get-row { display: flex; align-items: center; gap: 1rem 1.5rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: -.005em;
+    text-decoration: none;
+    color: var(--card);
+    background: var(--blue);
+    border: 1px solid var(--blue);
+    padding: .8rem 1.3rem;
+    border-radius: 6px;
+  }
+  .btn:hover { filter: brightness(1.08); }
+  .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .btn svg { flex: none; }
+  .btn[aria-disabled="true"] {
+    color: var(--slate);
+    background: var(--blue-dim);
+    border-color: var(--rule);
+    cursor: default;
+    filter: none;
+  }
+  .spec {
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--slate);
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .spec li { margin: 0; }
+  .get .note { font-size: .95rem; color: var(--ink-soft); margin: 0; }
+
+  /* Four steps, and they really are a sequence — so they are numbered. */
+  .steps { list-style: none; padding: 0; margin: 0 0 1rem; counter-reset: step; }
+  .steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    gap: 0 .9rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+  .steps li:last-child { border-bottom: 1px solid var(--rule); }
+  .steps li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--blue);
+    padding-top: .28rem;
+  }
+  .steps b {
+    display: block;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.02rem;
+    margin-bottom: .15rem;
+  }
+  .steps span { color: var(--ink-soft); }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn { transition: filter .15s ease; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="mark" href="/">
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#11141c"/>
+        <path d="M22 18 L44 32 L22 46 Z" fill="#5a9cf8"/>
+        <rect x="18" y="50" width="28" height="4" rx="2" fill="#f0f2f6"/>
+      </svg>
+      <b>Epic Fury</b>
+    </a>
+    <nav>
+      <a href="/download" aria-current="page">Download</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </nav>
+  </div>
+
+  <p class="eyebrow">Clip Studio for Mac</p>
+  <h1>Download, install, open, log in.</h1>
+  <p class="lede">One download with <strong>everything Clip Studio needs already inside</strong>. Nothing else to install and no Terminal &mdash; it is ready to cut, caption and render the moment you open it.</p>
+
+  <div class="get">
+    <div class="get-row">
+      <a class="btn" id="download" href="#" role="link" aria-disabled="true" tabindex="-1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+        <span id="download-label">Coming soon</span>
+      </a>
+      <ul class="spec">
+        <li>Mac with Apple silicon &middot; M1 or later</li>
+        <li id="spec-size" hidden></li>
+        <li id="spec-version" hidden></li>
+      </ul>
+    </div>
+    <p class="note">Clip Studio is for people invited to a team. You will log in with the name and password your team gives you &mdash; there is no sign-up.</p>
+  </div>
+
+  <section>
+    <h2>Getting started</h2>
+    <ol class="steps">
+      <li><div><b>Download</b><span>Press the button above. It is one file, and it is the whole app.</span></div></li>
+      <li><div><b>Install</b><span>Open the downloaded file and drag Clip Studio into your Applications folder.</span></div></li>
+      <li><div><b>Open</b><span>Open it from Applications like any other app. The first time, macOS checks it before it starts.</span></div></li>
+      <li><div><b>Log in</b><span>Enter the name and password your team gave you. Your team&rsquo;s artists and settings arrive with you.</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>What is inside</h2>
+    <p>Everything it runs on travels in the one download: the video engine, the caption maker, and the models that line lyrics up with a song. None of it is fetched or built on your Mac after you install, so there is nothing to go wrong halfway.</p>
+    <p>Updates arrive inside the app. When a new version is ready, Clip Studio offers it and installs it itself.</p>
+  </section>
+
+  <section>
+    <h2>Connecting your accounts</h2>
+    <p>Publishing and performance figures need you to connect your own accounts, from inside the app, on each platform&rsquo;s own sign-in page. The app never sees those passwords. How that works, and what it can and cannot read, is set out on the <a href="/">home page</a> and in the <a href="/privacy">Privacy Policy</a>.</p>
+  </section>
+
+  <footer>
+    <span>Epic Fury Clip Studio</span>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="mailto:jack@lukegawne.com">Help</a>
+  </footer>
+
+</div>
+</body>
+</html>
