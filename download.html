@@ -91,6 +91,17 @@
   @media (prefers-reduced-motion: no-preference) {
     .btn { transition: filter .15s ease; }
   }
+  /* The setup-code form: shown when downloads need an invitation. */
+  .code { display: grid; grid-template-columns: 1fr 1fr auto; gap: .6rem; align-items: end; }
+  .code label { display: grid; gap: .3rem; font-family: var(--display); font-size: .8rem; color: var(--slate); }
+  .code input { font: inherit; font-size: 1rem; padding: .7rem .8rem; border: 1px solid var(--rule);
+                border-radius: 6px; background: var(--paper); color: var(--ink); min-width: 0; }
+  .code input:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .code .btn { cursor: pointer; font: inherit; font-family: var(--display); font-weight: 600; }
+  @media (max-width: 560px) { .code { grid-template-columns: 1fr; } }
+  .say { font-size: .95rem; color: var(--ink-soft); margin: 0; }
+  .say:empty { display: none; }
+  [hidden] { display: none !important; }
 </style>
 </head>
 <body>
@@ -118,7 +129,7 @@
 
   <div class="get">
     <div class="get-row">
-      <a class="btn" id="download" href="#" role="link" aria-disabled="true" tabindex="-1">
+      <a class="btn" id="download" href="#" role="button" aria-disabled="true" tabindex="-1">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
         <span id="download-label">Coming soon</span>
       </a>
@@ -128,7 +139,13 @@
         <li id="spec-version" hidden></li>
       </ul>
     </div>
-    <p class="note">Clip Studio is for people invited to a team. You will log in with the name and password your team gives you &mdash; there is no sign-up.</p>
+    <form class="code" id="code-form" hidden>
+      <label>Your name<input id="who" autocomplete="name" required></label>
+      <label>Setup code<input id="code" placeholder="XXXX-XXXX-XXXX" spellcheck="false" autocapitalize="characters" required></label>
+      <button class="btn" type="submit">Download</button>
+    </form>
+    <p class="say" id="say" role="status"></p>
+    <p class="note" id="note">Clip Studio is for people invited to a team. Use the name and setup code your team gave you.</p>
   </div>
 
   <section>
@@ -137,7 +154,7 @@
       <li><div><b>Download</b><span>Press the button above. It is one file, and it is the whole app.</span></div></li>
       <li><div><b>Install</b><span>Open the downloaded file and drag Clip Studio into your Applications folder.</span></div></li>
       <li><div><b>Open</b><span>Open it from Applications like any other app. The first time, macOS checks it before it starts.</span></div></li>
-      <li><div><b>Log in</b><span>Enter the name and password your team gave you. Your team&rsquo;s artists and settings arrive with you.</span></div></li>
+      <li><div><b>Log in</b><span>Use your setup code once, or start a studio of your own. Your studio&rsquo;s artists and settings arrive with you.</span></div></li>
     </ol>
   </section>
 
@@ -160,5 +177,50 @@
   </footer>
 
 </div>
+
+<script>
+/* Downloads come from the login server, never from a public file: a link made
+   for this visit that works for 15 minutes. While new studios are open anyone
+   may have one; otherwise it takes the name and setup code a studio gave you. */
+(() => {
+  const API = "https://epicfury-roster-api.epicfury.workers.dev";
+  const $ = id => document.getElementById(id);
+  const btn = $("download"), label = $("download-label"), form = $("code-form"), say = $("say");
+  const mb = n => (n / 1e9 >= 1 ? (n / 1e9).toFixed(1) + " GB" : Math.round(n / 1e6) + " MB");
+
+  async function get(body) {
+    say.textContent = "Getting your download ready\u2026";
+    try {
+      const r = await fetch(API + "/v2/download/link", {
+        method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) { say.textContent = d.error || "That didn't work. Try again in a minute."; return; }
+      $("spec-size").textContent = mb(d.bytes); $("spec-size").hidden = false;
+      $("spec-version").textContent = "Version " + d.seq; $("spec-version").hidden = false;
+      say.textContent = "Your download has started.";
+      location.href = d.url;
+    } catch (e) {
+      say.textContent = "The download server didn't answer. Try again in a minute.";
+    }
+  }
+
+  fetch(API + "/health").then(r => r.json()).then(h => {
+    if (h.studios_open) {
+      label.textContent = "Download";
+      btn.removeAttribute("aria-disabled"); btn.removeAttribute("tabindex");
+      btn.addEventListener("click", e => { e.preventDefault(); get({ open: true, what: "app" }); });
+      $("note").textContent = "When you open it, sign in with the setup code your studio gave you, or start a studio of your own.";
+    } else {
+      btn.hidden = true;
+      form.hidden = false;
+    }
+  }).catch(() => { say.textContent = "The download server didn't answer. Try again in a minute."; });
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    get({ who: $("who").value.trim(), code: $("code").value.trim(), what: "app" });
+  });
+})();
+</script>
 </body>
 </html>
