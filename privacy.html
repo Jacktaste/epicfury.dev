@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy · Epic Fury Studio</title>
-<meta name="description" content="How Epic Fury Studio handles data: everything is stored on your own computer.">
+<meta name="description" content="How Epic Fury Studio handles data: what stays on your Mac, and what the login server holds.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -20,6 +20,7 @@
       <b>Epic Fury</b>
     </a>
     <nav>
+      <a href="/download">Download</a>
       <a href="/privacy" aria-current="page">Privacy</a>
       <a href="/terms">Terms</a>
     </nav>
@@ -28,27 +29,31 @@
   <div class="doc-head">
     <p class="eyebrow">Epic Fury Studio</p>
     <h1>Privacy Policy</h1>
-    <p class="meta"><span>Effective 27 August 2026</span><span>jack@lukegawne.com</span></p>
+    <p class="meta"><span>Effective 2 October 2026</span><span>jack@lukegawne.com</span></p>
   </div>
 
-  <p class="lede">Epic Fury Studio is a <strong>desktop application</strong> used by the GAWNE music team to edit and publish short-form video to their own social media accounts. It runs on the team's own computers. It is not a public service, and it does not sell, rent, or share personal data with anyone.</p>
+  <p class="lede">Epic Fury Studio is a <strong>desktop application</strong> that music teams use to edit short-form video and publish it to their own social media accounts. It does not sell, rent, or share personal data with anyone.</p>
 
   <section>
     <h2><span class="num">1</span> Who this covers</h2>
-    <p>This policy applies to members of the GAWNE team who have been given access to Epic Fury Studio, and to the social media accounts those members choose to connect. There is no public sign-up.</p>
+    <p>People invited to a team in Epic Fury Studio, and the social media accounts they choose to connect. There is no public sign-up.</p>
   </section>
 
   <section>
-    <h2><span class="num">2</span> What the app stores</h2>
-    <p>Everything below is stored in a folder on the user's own computer. None of it is transmitted to us, because we operate no server that collects user data.</p>
+    <h2><span class="num">2</span> What is stored, and where</h2>
+    <p>Most of what the app keeps stays in a folder on your own Mac. A small login server lets a team sign in and share work. It holds only what the table says.</p>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Data</th><th>Why it exists</th><th>Where it lives</th></tr></thead>
+        <thead><tr><th>Data</th><th>Why</th><th>Where</th></tr></thead>
         <tbody>
-          <tr><td>Access tokens</td><td>To publish video to an account the user connected, on their instruction</td><td>Local file, readable only by the user's own operating system account</td></tr>
-          <tr><td>Account name</td><td>So the user can see which account they are about to post to</td><td>Same local file</td></tr>
-          <tr><td>Video files</td><td>The clips being edited and published</td><td>The user's own disk and their own cloud storage</td></tr>
-          <tr><td>Team sign-in</td><td>To keep one member's work separate from another's</td><td>Local file, password stored only as a hash</td></tr>
+          <tr><td>Access tokens for connected accounts</td><td>To publish to, and read figures for, an account you connected</td><td>Your Mac, in a file only your macOS account can read</td></tr>
+          <tr><td>Video files</td><td>The clips being edited and published</td><td>Your own disk and your own cloud storage</td></tr>
+          <tr><td>Your name, team role and password check</td><td>So you can sign in and see only what your team lets you see</td><td>Login server. Passwords are never stored, only a one-way check</td></tr>
+          <tr><td>Signed-in devices</td><td>So a team can sign a device out</td><td>Login server: a device name, app version and when it was last seen</td></tr>
+          <tr><td>Team messages</td><td>Messages team members send each other in the app</td><td>Login server, deleted on a schedule</td></tr>
+          <tr><td>Queued posts</td><td>When a team member asks the team&rsquo;s main Mac to post for them: which clip, which account and the post&rsquo;s text. The video itself is not uploaded</td><td>Login server, until the post is sent or cancelled</td></tr>
+          <tr><td>Performance figures</td><td>So team members with access to an artist see the same figures for that artist&rsquo;s posts</td><td>Login server, readable only by that team&rsquo;s members who have access</td></tr>
+          <tr><td>Failed sign-in counts</td><td>To lock out password guessing</td><td>Login server, cleared after a short time</td></tr>
         </tbody>
       </table>
     </div>
@@ -56,30 +61,27 @@
 
   <section>
     <h2><span class="num">3</span> Connected social accounts</h2>
-    <p>When a user connects a TikTok, YouTube, Instagram, or Facebook account, that platform asks them directly to approve the connection. We never see or handle their password. The platform returns an access token, which is stored locally as described above and used only to do what the user asked.</p>
+    <p>When you connect a TikTok, YouTube, Instagram or Facebook account, that platform asks you directly to approve it. We never see your password. Some sign-in steps pass through the login server so the app&rsquo;s own secret keys never ship inside the app. Your tokens pass through it but are not kept or logged there.</p>
     <div class="callout">
-      <p><strong>Nothing is posted without a person choosing to post it.</strong> The app does not publish on a schedule the user has not set, does not post to accounts they have not connected, and does not read their feed, their messages, or their browsing activity.</p>
-      <p>It does read, for the accounts a user connects, that account&rsquo;s own public details and its own performance figures &mdash; see &ldquo;YouTube API Services&rdquo; below, which sets out exactly what is read and why.</p>
+      <p><strong>Nothing is posted unless a person chooses to post it.</strong> The app does not post on a schedule you did not set, does not post to accounts you did not connect, and does not read your feed, messages or browsing.</p>
     </div>
-    <p>A user can disconnect an account at any time from within the app, which deletes the stored token. They can also revoke access from the platform's own settings, which has the same effect.</p>
+    <p>You can disconnect an account in the app at any time, which deletes its token. You can also revoke access in the platform&rsquo;s own settings.</p>
   </section>
 
   <section>
     <h2><span class="num">4</span> What we do not do</h2>
     <ul>
       <li>We do not sell, rent, or trade personal data.</li>
-      <li>We do not use the data for advertising or profiling.</li>
-      <li>We do not run third-party analytics or tracking inside the app.</li>
-      <li>We do not collect data about anyone other than the team members using the app.</li>
-      <li>We do not access the content of any account beyond what is needed to publish the video a user asked us to publish, and to read back how that account&rsquo;s own videos performed.</li>
+      <li>We do not use it for advertising or profiling.</li>
+      <li>We do not run third-party analytics or tracking in the app.</li>
       <li>We do not use Google user data to develop, improve or train generalised AI or machine-learning models.</li>
-      <li>We do not transfer Google user data to anyone, and there is nowhere for it to be transferred to: the app has no server.</li>
+      <li>We do not transfer Google user data to anyone outside the team that connected the account.</li>
     </ul>
   </section>
 
   <section>
     <h2><span class="num">5</span> YouTube API Services</h2>
-    <p>Epic Fury Studio uses <strong>YouTube API Services</strong>. By connecting a YouTube channel to it you are agreeing to the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>, and Google&rsquo;s <a href="https://policies.google.com/privacy">Privacy Policy</a> describes how Google handles your data.</p>
+    <p>Epic Fury Studio uses <strong>YouTube API Services</strong>. By connecting a YouTube channel you agree to the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>, and Google&rsquo;s <a href="https://policies.google.com/privacy">Privacy Policy</a> describes how Google handles your data.</p>
 
     <h3>What it asks YouTube for</h3>
     <div class="tablewrap">
@@ -88,63 +90,63 @@
         <tbody>
           <tr>
             <td>See your YouTube account<br><code>youtube.readonly</code></td>
-            <td>To list the channels a user has connected and the videos on them, so a video published from the app can be matched to the right channel and shown by name rather than by ID.</td>
+            <td>To list the connected channel and its videos, so a video published from the app is matched to the right channel and shown by name.</td>
           </tr>
           <tr>
             <td>See your YouTube Analytics reports<br><code>yt-analytics.readonly</code></td>
-            <td>To read views, watch time, traffic sources and audience figures <em>for that channel&rsquo;s own videos</em>, so the team can see which of their videos worked. Read-only: it cannot change, upload or delete anything.</td>
+            <td>To read views, watch time, traffic sources and audience figures <em>for that channel&rsquo;s own videos</em>. Read-only: it cannot change, upload or delete anything.</td>
           </tr>
           <tr>
             <td>Upload videos<br><code>youtube.upload</code></td>
-            <td>Only for channels connected for publishing. A channel can be connected for <strong>analytics only</strong>, and the app then never offers it as somewhere to post and never requests this permission for it.</td>
+            <td>Only for channels connected for publishing. A channel connected for <strong>analytics only</strong> is never offered as somewhere to post, and this permission is never requested for it.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <h3>What happens to what it reads</h3>
-    <p>The figures are shown to the team member who asked for them and stored in a folder on their own computer, alongside everything else described in section 2. They are not sent to us, because there is no server to send them to. They are not sold, shared, or used for advertising, profiling, or training any model. Nothing read from YouTube is combined with data from anywhere else to build a profile of any viewer, and the app never sees individual viewers &mdash; YouTube reports only aggregate figures.</p>
-    <p>Stored YouTube data is refreshed on each read and is deleted when the account is disconnected or the app&rsquo;s data folder is removed. Nothing read from YouTube is kept for longer than thirty days without being refreshed from the API.</p>
+    <p>The figures are stored on the Mac that read them. They are also shared through the login server with members of the same team who have access to that artist. Nobody outside that team can read them. They are not sold, shared, or used for advertising, profiling or training any model. YouTube reports only totals, so the app never sees individual viewers.</p>
+    <p>Stored YouTube data is refreshed when it is read again. Nothing read from YouTube is kept for more than thirty days without being refreshed from the API. Disconnecting the account deletes its token and stops any further reads.</p>
 
     <h3>Taking it back</h3>
-    <p>A user can disconnect a channel inside the app at any time, which deletes the stored token. They can also revoke the app&rsquo;s access directly from their Google account at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, which has the same effect and does not require the app at all.</p>
+    <p>Disconnect the channel in the app, or revoke access at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
   </section>
 
   <section>
     <h2><span class="num">6</span> Third-party platforms</h2>
-    <p>When the app publishes a video, it sends that video to the platform the user selected. From that point the platform's own privacy policy governs it:</p>
+    <p>A published video goes to the platform you chose, and that platform&rsquo;s privacy policy covers it from then on:</p>
     <ul>
       <li><a href="https://www.tiktok.com/legal/privacy-policy">TikTok Privacy Policy</a></li>
       <li><a href="https://policies.google.com/privacy">Google / YouTube Privacy Policy</a></li>
       <li><a href="https://www.facebook.com/privacy/policy/">Meta Privacy Policy</a></li>
     </ul>
-    <p>The app's use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+    <p>The login server runs on Cloudflare. The app&rsquo;s use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
   </section>
 
   <section>
-    <h2><span class="num">7</span> Retention and deletion</h2>
-    <p>Tokens are kept until the user disconnects the account or revokes access at the platform. Video files stay on their own disk until they delete them. Because the data lives on the user's own machine, deleting it is entirely within their control — removing the app's data folder removes everything the app has stored.</p>
-    <p>To request deletion of anything held on their behalf, or to ask what is held, write to <a href="mailto:jack@lukegawne.com">jack@lukegawne.com</a>.</p>
+    <h2><span class="num">7</span> Keeping and deleting</h2>
+    <p>Tokens stay until you disconnect the account or revoke access. Removing the app&rsquo;s data folder deletes everything kept on your Mac. When someone is removed from a team, their sign-in stops working and their devices are signed out.</p>
+    <p>To ask what is held about you, or to have it deleted, write to <a href="mailto:jack@lukegawne.com">jack@lukegawne.com</a>.</p>
   </section>
 
   <section>
     <h2><span class="num">8</span> Security</h2>
-    <p>Credential files are written with permissions that restrict them to the user's own operating system account. Where team members access a shared instance over the network, that connection runs over an encrypted private tunnel and requires a password.</p>
+    <p>Token files on your Mac can be read only by your own macOS account. Everything sent to the login server is encrypted in transit.</p>
   </section>
 
   <section>
     <h2><span class="num">9</span> Children</h2>
-    <p>The app is a professional tool for the GAWNE team and is not directed to children under 13.</p>
+    <p>The app is a professional tool and is not directed to children under 13.</p>
   </section>
 
   <section>
     <h2><span class="num">10</span> Changes</h2>
-    <p>If this policy changes, the effective date at the top of this page changes with it.</p>
+    <p>If this policy changes, the date at the top changes with it.</p>
   </section>
 
   <section>
     <h2><span class="num">11</span> Contact</h2>
-    <p>Questions about this policy, or about data held on your behalf: <a href="mailto:jack@lukegawne.com">jack@lukegawne.com</a>.</p>
+    <p><a href="mailto:jack@lukegawne.com">jack@lukegawne.com</a></p>
   </section>
 
   <footer>
