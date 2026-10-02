@@ -13,8 +13,9 @@
 <style>
   /* The download card: the one object on this page that needs to stand apart. */
   .get {
-    background: var(--card);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .035), transparent), var(--card);
     border: 1px solid var(--rule);
+    border-radius: 16px;
     padding: 1.5rem 1.5rem 1.35rem;
     margin: 0 0 3rem;
     display: grid;
@@ -30,13 +31,14 @@
     font-size: 1rem;
     letter-spacing: -.005em;
     text-decoration: none;
-    color: var(--card);
-    background: var(--blue);
-    border: 1px solid var(--blue);
-    padding: .8rem 1.3rem;
-    border-radius: 6px;
+    color: #fff;
+    background: var(--fury);
+    border: 0;
+    padding: .85rem 1.4rem;
+    border-radius: 999px;
+    box-shadow: 0 6px 28px rgba(106, 18, 251, .45), 0 0 0 1px rgba(255, 255, 255, .08) inset;
   }
-  .btn:hover { filter: brightness(1.08); }
+  .btn:hover { filter: brightness(1.1) saturate(1.05); }
   .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   .btn svg { flex: none; }
   .btn[aria-disabled="true"] {
@@ -102,6 +104,12 @@
   .say { font-size: .95rem; color: var(--ink-soft); margin: 0; }
   .say:empty { display: none; }
   [hidden] { display: none !important; }
+  /* The icon, large, with the flame's own glow behind it. */
+  .hero-icon { position: relative; width: 112px; height: 112px; margin: 0 0 1.4rem; }
+  .hero-icon::before { content: ""; position: absolute; inset: -18px; border-radius: 40%;
+                       background: var(--fury); filter: blur(28px); opacity: .55; }
+  .hero-icon img { position: relative; width: 100%; height: 100%; display: block; }
+  h1 .fury { background: var(--fury); -webkit-background-clip: text; background-clip: text; color: transparent; }
 </style>
 </head>
 <body>
@@ -109,12 +117,8 @@
 
   <div class="topbar">
     <a class="mark" href="/">
-      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
-        <rect width="64" height="64" rx="14" fill="#11141c"/>
-        <path d="M22 18 L44 32 L22 46 Z" fill="#5a9cf8"/>
-        <rect x="18" y="50" width="28" height="4" rx="2" fill="#f0f2f6"/>
-      </svg>
-      <b>Epic Fury</b>
+      <img src="/icon-128.png" alt="">
+      <b>Epic Fury Studio</b>
     </a>
     <nav>
       <a href="/download" aria-current="page">Download</a>
@@ -123,8 +127,9 @@
     </nav>
   </div>
 
+  <div class="hero-icon"><img src="/icon.png" alt="Epic Fury Studio"></div>
   <p class="eyebrow">Epic Fury Studio for Mac</p>
-  <h1>Download, install, open, log in.</h1>
+  <h1>Download, install, open, <span class="fury">log in.</span></h1>
   <p class="lede">One download with <strong>everything Epic Fury Studio needs already inside</strong>. Nothing else to install and no Terminal &mdash; it is ready to cut, caption and render the moment you open it.</p>
 
   <div class="get">

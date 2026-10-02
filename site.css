@@ -1,44 +1,33 @@
 :root {
-  --ink:      #11141c;
-  --ink-soft: #2b313f;
-  --slate:    #656d81;
-  --rule:     #dde1e9;
-  --paper:    #f7f8fa;
-  --card:     #ffffff;
-  --blue:     #2f6fd0;
-  --blue-dim: #eaf1fc;
+  /* Epic Fury Studio: the flame icon's navy, with its magenta -> violet ->
+     cyan glow as the one accent. One theme: the brand is a dark one. */
+  color-scheme: dark;
+  --ink:      #f1f3ff;
+  --ink-soft: #c3c9ec;
+  --slate:    #8f97c6;
+  --rule:     #1c2560;
+  --paper:    #030923;
+  --card:     #0a1242;
+  --blue:     #4fd8fd;          /* links and small accents: the flame's cyan */
+  --blue-dim: #101a52;
+  --magenta:  #c026fb;
+  --violet:   #5b0cfb;
+  --cyan:     #18d3fc;
+  --fury:     linear-gradient(100deg, #c026fb 0%, #6a12fb 38%, #2a4ff6 68%, #18b8fc 100%);
   --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --body: "Source Serif 4", Georgia, "Times New Roman", serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --ink:      #eef0f5;
-    --ink-soft: #c3c9d6;
-    --slate:    #8b93a6;
-    --rule:     #2a303d;
-    --paper:    #0d1017;
-    --card:     #141821;
-    --blue:     #7aaefb;
-    --blue-dim: #16243a;
-  }
-}
-:root[data-theme="dark"] {
-  --ink:      #eef0f5;
-  --ink-soft: #c3c9d6;
-  --slate:    #8b93a6;
-  --rule:     #2a303d;
-  --paper:    #0d1017;
-  --card:     #141821;
-  --blue:     #7aaefb;
-  --blue-dim: #16243a;
 }
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--paper);
+  background:
+    radial-gradient(60rem 28rem at 15% -6rem, rgba(192, 38, 251, .20), transparent 70%),
+    radial-gradient(54rem 26rem at 90% -4rem, rgba(24, 211, 252, .16), transparent 70%),
+    var(--paper);
+  background-repeat: no-repeat;
   color: var(--ink);
   font-family: var(--body);
   font-size: 17px;
@@ -63,7 +52,7 @@ body {
   flex-wrap: wrap;
 }
 .mark { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); }
-.mark svg { display: block; border-radius: 22%; }
+.mark img { display: block; width: 30px; height: 30px; }
 .mark b {
   font-family: var(--display);
   font-weight: 700;
@@ -111,7 +100,7 @@ h1 {
 .lede { font-size: 1.1rem; color: var(--ink-soft); margin: 0 0 2.5rem; }
 .lede strong { color: var(--ink); font-weight: 600; }
 
-.doc-head { border-bottom: 2px solid var(--ink); padding-bottom: 1.6rem; margin-bottom: 2.5rem; }
+.doc-head { border-bottom: 2px solid var(--rule); padding-bottom: 1.6rem; margin-bottom: 2.5rem; }
 
 section { margin-bottom: 2.5rem; }
 h2 {
