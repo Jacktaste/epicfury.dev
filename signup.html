@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start a studio · Epic Fury Studio</title>
+<meta name="description" content="Ask for a studio on Epic Fury Studio: Cutroom the app, Cutroom set up for you, or Epic Fury the label.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/site.css">
+<link rel="icon" href="/icon.png">
+<style>
+  /* The three plans: one choice, so they are radio cards. */
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin: 0 0 1.4rem; border: 0; padding: 0; }
+  .plans legend { font-family: var(--display); font-size: .8rem; color: var(--slate); margin-bottom: .5rem; padding: 0; }
+  .plan { position: relative; display: grid; gap: .35rem; align-content: start; cursor: pointer;
+          background: linear-gradient(180deg, rgba(255, 255, 255, .035), transparent), var(--card);
+          border: 1px solid var(--rule); border-radius: 14px; padding: 1.1rem 1.1rem 1rem; }
+  .plan input { position: absolute; opacity: 0; pointer-events: none; }
+  .plan b { font-family: var(--display); font-weight: 600; font-size: 1.05rem; letter-spacing: -.01em; }
+  .plan .price { font-family: var(--mono); font-size: .8rem; color: var(--blue); }
+  .plan span { color: var(--ink-soft); font-size: .92rem; line-height: 1.5; }
+  .plan:has(input:checked) { border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue) inset; }
+  .plan:has(input:focus-visible) { outline: 2px solid var(--blue); outline-offset: 3px; }
+  @media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
+
+  .ask { background: linear-gradient(180deg, rgba(255, 255, 255, .035), transparent), var(--card);
+         border: 1px solid var(--rule); border-radius: 16px; padding: 1.5rem; margin: 0 0 3rem; }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 0 0 1.2rem; }
+  .fields .wide { grid-column: 1 / -1; }
+  .fields label { display: grid; gap: .3rem; font-family: var(--display); font-size: .8rem; color: var(--slate); }
+  .fields input { font: inherit; font-size: 1rem; padding: .7rem .8rem; border: 1px solid var(--rule);
+                  border-radius: 6px; background: var(--paper); color: var(--ink); min-width: 0; }
+  .fields input:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+  @media (max-width: 560px) { .fields { grid-template-columns: 1fr; } }
+  /* Not for people: a box only a robot fills in. */
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+  .btn { display: inline-flex; align-items: center; gap: .6rem; font-family: var(--display); font-weight: 600;
+         font-size: 1rem; letter-spacing: -.005em; color: #fff; background: var(--fury); border: 0; cursor: pointer;
+         padding: .85rem 1.4rem; border-radius: 999px;
+         box-shadow: 0 6px 28px rgba(106, 18, 251, .45), 0 0 0 1px rgba(255, 255, 255, .08) inset; }
+  .btn:hover { filter: brightness(1.1) saturate(1.05); }
+  .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .btn[disabled] { color: var(--slate); background: var(--blue-dim); box-shadow: none; cursor: default; filter: none; }
+  .row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .say { font-size: .95rem; color: var(--ink-soft); margin: 0; }
+  .say:empty { display: none; }
+  [hidden] { display: none !important; }
+  h1 .fury { background: var(--fury); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  @media (prefers-reduced-motion: no-preference) { .btn { transition: filter .15s ease; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="mark" href="/">
+      <img src="/icon-128.png" alt="">
+      <b>Epic Fury Studio</b>
+    </a>
+    <nav>
+      <a href="/signup" aria-current="page">Start a studio</a>
+      <a href="/download">Download</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </nav>
+  </div>
+
+  <p class="eyebrow">Start a studio</p>
+  <h1>Your footage in, <span class="fury">finished cuts out.</span></h1>
+  <p class="lede">Tell us about your studio. We&rsquo;ll be in touch with your setup code.</p>
+
+  <form class="ask" id="ask" novalidate>
+    <fieldset class="plans">
+      <legend>Plan</legend>
+      <label class="plan">
+        <input type="radio" name="plan" value="app" checked>
+        <b>Cutroom</b>
+        <em class="price">[price]</em>
+        <span>The app. Captions, cuts and review for your whole team.</span>
+      </label>
+      <label class="plan">
+        <input type="radio" name="plan" value="setup">
+        <b>Cutroom, set up for you</b>
+        <em class="price">[price]</em>
+        <span>We build your caption looks, check your catalogue and plan your first shoot.</span>
+      </label>
+      <label class="plan">
+        <input type="radio" name="plan" value="label">
+        <b>Epic Fury, the label</b>
+        <em class="price">[price]</em>
+        <span>We run your releases and content with you.</span>
+      </label>
+    </fieldset>
+
+    <div class="fields">
+      <label class="wide">Studio name<input id="studio_name" maxlength="60" autocomplete="organization" required></label>
+      <label>Your name<input id="contact" maxlength="40" autocomplete="name" required></label>
+      <label>Email<input id="email" type="email" maxlength="254" autocomplete="email" required></label>
+    </div>
+    <div class="hp" aria-hidden="true">
+      <label>Website<input id="website" tabindex="-1" autocomplete="off"></label>
+    </div>
+
+    <div class="row">
+      <button class="btn" type="submit" id="send">Ask for a studio</button>
+      <p class="say" id="say" role="status"></p>
+    </div>
+  </form>
+
+  <section>
+    <h2>What happens next</h2>
+    <p>We read every request. Once your studio is ready you get a setup code by email, then you <a href="/download">download the app</a> and sign in with it. Nothing is charged here.</p>
+  </section>
+
+  <footer>
+    <span>Epic Fury Studio</span>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="mailto:jack@lukegawne.com">Help</a>
+  </footer>
+
+</div>
+
+<script>
+/* The request goes to the login server, which keeps it until it is answered.
+   It takes no payment. Every word in it is checked again there. */
+(() => {
+  const API = "https://epicfury-roster-api.epicfury.workers.dev";
+  const $ = id => document.getElementById(id);
+  const form = $("ask"), say = $("say"), send = $("send");
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const body = {
+      studio_name: $("studio_name").value.trim(),
+      contact: $("contact").value.trim(),
+      email: $("email").value.trim(),
+      plan: (form.querySelector("input[name=plan]:checked") || {}).value || "",
+      website: $("website").value,
+    };
+    if (!body.studio_name) { say.textContent = "Add your studio's name."; $("studio_name").focus(); return; }
+    if (!body.contact) { say.textContent = "Add your name."; $("contact").focus(); return; }
+    if (!$("email").checkValidity() || !body.email) { say.textContent = "Add an email we can reach you on."; $("email").focus(); return; }
+    send.disabled = true;
+    say.textContent = "Sending…";
+    try {
+      const r = await fetch(API + "/v2/studios/request", {
+        method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) { say.textContent = d.error || "That didn't work. Try again in a minute."; send.disabled = false; return; }
+      form.querySelectorAll("input").forEach(i => { i.disabled = true; });
+      send.hidden = true;
+      say.textContent = "Thanks. We'll email you.";
+    } catch (err) {
+      say.textContent = "The server didn't answer. Try again in a minute.";
+      send.disabled = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>
