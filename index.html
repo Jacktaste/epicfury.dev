@@ -2,78 +2,229 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Epic Fury Studio</title>
-<meta name="description" content="A desktop video editor for short-form clips, with publishing to — and performance figures from — your own connected social accounts.">
+<meta name="description" content="Releases planned, clips posted, fans answered and the numbers explained. Epic Fury Studio for Mac and iPhone.">
+<meta name="theme-color" content="#0a0e1c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="/home.css">
 <link rel="icon" href="/icon.png">
 </head>
 <body>
-<div class="wrap">
-
-  <div class="topbar">
-    <a class="mark" href="/">
-      <img src="/icon-128.png" alt="">
-      <b>Epic Fury</b>
-    </a>
-    <nav>
-      <a href="/signup">Start a studio</a>
-      <a href="/download">Download</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-    </nav>
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="/"><img src="/icon-128.png" alt="">Epic Fury Studio</a>
+    <nav><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav>
   </div>
+</header>
 
-  <p class="eyebrow">Epic Fury Studio</p>
-  <h1>A video editor that publishes where you already post.</h1>
-  <p class="lede">Epic Fury Studio is a <strong>desktop application</strong> for making short-form video. It cuts clips to music, burns in captions, and publishes the finished video straight to the social accounts you connect.</p>
-
-  <section>
-    <h2>What it does</h2>
-    <ul>
-      <li><strong>Cuts to the music.</strong> It finds where a clip sits inside a track and trims it to the beat.</li>
-      <li><strong>Burns in captions.</strong> Lyrics and speech are timed against the audio, styled, and rendered into the video.</li>
-      <li><strong>Publishes.</strong> Connect an account once, then send a finished video to it without leaving the app.</li>
-      <li><strong>Reads back how it did.</strong> For accounts the user has connected, the app reads that account&rsquo;s own public details and its own performance figures — views, watch time, subscriber counts — so the person who made a video can see whether it worked.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>How connecting an account works</h2>
-    <p>You sign in on the platform's own page — TikTok, YouTube, Instagram or Facebook — and approve the connection there. The app never sees your password. The access token it receives is stored on your own computer.</p>
-    <div class="callout">
-      <p>Nothing is posted unless a person chooses to post it. The app does not read your feed, your messages, or your browsing activity, and it does not post on a schedule you did not set.</p>
+<main class="page" id="top">
+  <section class="hero">
+    <div class="hero-words" id="heroWords">
+      <span class="beta" tabindex="0"><b>Beta</b>Invite only<span class="say">Epic Fury Studio is in beta. Only invited studios can download it for now.</span></span>
+      <h1>Your career, handled.<br>You keep making <em>music</em>.</h1>
+      <p class="lede">Releases planned, clips posted, fans answered, numbers explained. On your Mac and your phone.</p>
+      <div class="get" id="get">
+        <form class="field" id="form" novalidate>
+          <input id="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email" aria-label="Your email" spellcheck="false">
+          <button class="go" id="go" type="submit" aria-label="Download">
+            <span id="goLabel">Download</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17.5H6.5a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 17.6 8a4 4 0 0 1-.1 9.5H17"/><path d="M12 11v9"/><path d="m8.5 16.5 3.5 3.5 3.5-3.5"/></svg>
+          </button>
+        </form>
+        <form class="field code" id="cform" hidden novalidate>
+          <input id="who" autocomplete="name" placeholder="Your name" aria-label="Your name" spellcheck="false">
+          <input id="code" placeholder="Code" aria-label="Setup code" spellcheck="false" autocapitalize="characters">
+          <button class="go" id="cgo" type="submit" aria-label="Download"><span id="clab">Download</span></button>
+        </form>
+        <p class="miss" id="say" role="status" hidden></p>
+        <div class="wait" id="wait" hidden>
+          <div class="wait-top"><b id="waitHead">Join the waiting list</b><span>We'll email you when there's room.</span></div>
+          <form class="field" id="wform" novalidate>
+            <input id="wemail" type="email" inputmode="email" autocomplete="email" placeholder="Your email" aria-label="Your email for the waiting list" spellcheck="false">
+            <button class="go" id="wgo" type="submit"><span id="wlab">Join</span></button>
+          </form>
+          <label class="optin"><input type="checkbox" id="news">Send me the occasional update</label>
+          <button class="back" id="back" type="button">‹ I have an invite</button>
+        </div>
+        <p class="invite" id="invite">Not invited? <button type="button" id="toWait">Join the waiting list</button><span class="or">·</span><button type="button" id="toCode" class="soft">Setup code</button></p>
+        <div class="specs" id="specs">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.9-.8-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.4-1-2.4-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg>Mac with Apple silicon</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>iPhone</span>
+          <span class="chip soon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.6 10 4.6v6.9H3zM11 4.5 21 3v8.5H11zM3 12.5h7v6.9l-7-1zM11 12.5h10V21l-10-1.4z"/></svg>Windows<i>Soon</i></span>
+        </div>
+      </div>
     </div>
 
-    <h3>Why it asks to read as well as publish</h3>
-    <p>A person who makes a video wants to know how it did. So, for the accounts you connect, the app also asks for <strong>read-only</strong> access to that account's own details and its own performance figures.</p>
-    <p>On YouTube that means two things and no more:</p>
-    <ul>
-      <li><strong>See your YouTube account</strong> — the channel's name, its video list and its public counts, so a video the app published can be matched to the right channel and listed by name rather than by ID.</li>
-      <li><strong>See your YouTube Analytics reports</strong> — views, watch time, traffic sources and audience figures <em>for that channel's own videos</em>, so the team can see which of their videos worked.</li>
-    </ul>
-    <p>These are read-only. They cannot change, upload or delete anything. A channel can be connected for analytics <em>alone</em>, with no ability to publish to it at all — that is a choice made when the account is connected, and the app then never offers that channel as somewhere to post.</p>
-    <p>A channel connected for publishing also lets the app add the song&rsquo;s lyrics to an uploaded video as subtitles, and post a reply to a comment when a team member presses Reply. It never edits or deletes anything on the channel.</p>
-    <p>The figures stay on the Mac that read them and are shared only with members of the same team who have access to that artist. They are not sold, or used for advertising or profiling. The <a href="/privacy">Privacy Policy</a> lists everything that is stored and where.</p>
-
-    <p>You can disconnect an account from inside the app at any time, or revoke access from the platform's own settings — for Google accounts, at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="float" id="float">
+        <div class="win">
+          <aside class="rail">
+            <div class="lights"><i></i><i></i><i></i></div>
+            <div class="who"><img src="/img/covers/tv-off.jpg" alt=""><span>GAWNE</span></div>
+            <div class="area on"><span class="ic">☀</span><span class="nm">Today</span></div>
+            <div class="area"><span class="ic">◈</span><span class="nm">Releases</span></div>
+            <div class="area"><span class="ic">✦</span><span class="nm">Make Videos</span></div>
+            <div class="area"><span class="ic">↗</span><span class="nm">Publish</span></div>
+            <div class="area"><span class="ic">▥</span><span class="nm">Analytics</span></div>
+          </aside>
+          <div class="main">
+            <div class="wbar"><h3>Today</h3><span class="sub" data-today></span><span class="sp"></span><span class="key">+ New</span></div>
+            <div class="wbody">
+              <div class="card">
+                <h4>Due this week<span class="sp"></span><svg class="mring" viewBox="0 0 20 20"><circle class="bg" cx="10" cy="10" r="7.5"/><circle class="fg" id="mfg" cx="10" cy="10" r="7.5" stroke-dasharray="47.1" stroke-dashoffset="35.3"/></svg></h4>
+                <div class="todo d"><span class="tick"><svg viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7"/></svg></span><span class="t">Release-week content</span><span class="w">Thu</span></div>
+                <div class="todo" data-t><span class="tick"><svg viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7"/></svg></span><span class="t">Promo campaign</span><span class="w">Thu</span></div>
+                <div class="todo" data-t><span class="tick"><svg viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7"/></svg></span><span class="t">Song released</span><span class="w">Fri</span></div>
+                <div class="todo" data-t><span class="tick"><svg viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7"/></svg></span><span class="t">Update lukegawne.com</span><span class="w">Sat</span></div>
+              </div>
+              <div class="card">
+                <h4>Next release</h4>
+                <div class="rel"><img class="cov" src="/img/covers/tv-off.jpg" alt="" width="52" height="52"><div><b>TV OFF</b><br><span class="pill"><span data-out="2026-10-16">Out in 5 days</span></span></div></div>
+              </div>
+              <div class="card hide-s">
+                <h4>Posting this week</h4>
+                <div class="post"><span class="c">Teaser</span><span class="t">Performance</span><span class="w">Tue</span></div>
+                <div class="post"><span class="c">Teaser</span><span class="t">Hook</span><span class="w">Wed</span></div>
+                <div class="post"><span class="c">Out now</span><span class="t">Performance</span><span class="w">Fri</span></div>
+              </div>
+              <div class="card hide-s">
+                <h4>Streams</h4>
+                <svg class="spark" viewBox="0 0 200 58" preserveAspectRatio="none"><polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="0.0,33.2 7.4,30.1 14.8,28.3 22.2,23.8 29.6,17.3 37.0,31.8 44.4,43.8 51.9,17.4 59.3,14.6 66.7,14.0 74.1,12.2 81.5,12.5 88.9,36.1 96.3,44.8 103.7,15.2 111.1,12.0 118.5,11.0 125.9,15.3 133.3,19.1 140.7,37.7 148.1,52.0 155.6,31.3 163.0,22.6 170.4,9.2 177.8,8.8 185.2,6.0 192.6,28.9 200.0,47.3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="phone">
+          <div class="screen">
+            <div class="notch"></div>
+            <div class="ph">
+              <h5>Review</h5>
+              <div class="push"><img src="/icon-128.png" alt=""><div><b>Epic Fury Studio</b><span>6 new TV OFF clips to review</span></div></div>
+              <div class="ptile">
+                <div><img src="/img/clips/i-m-not-okay-city-view.jpg" alt=""></div>
+                <div><img src="/img/clips/i-m-not-okay-head-down.jpg" alt=""></div>
+                <div><img src="/img/clips/iceman-bear-and-gawne.jpg" alt=""></div>
+                <div><img src="/img/clips/iceman-mascot-dance.jpg" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img class="badge" src="/icon-128.png" alt="">
+      </div>
+    </div>
+    <button class="cue" id="cue" type="button">See how it works<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
   </section>
+</main>
 
-  <section>
-    <h2>Availability</h2>
-    <p>To run your own studio, <a href="/signup">ask for one</a>. We reply with a setup code. To join a studio that already exists, use the setup code its owner gave you.</p>
-    <p>Questions: ask on the <a href="/signup#ask">Start a studio</a> page.</p>
+<div class="scenes" id="scenes">
+  <section class="scene" aria-label="Today"><div class="scene-in" data-big="Today">
+    <div class="sl">
+      <div class="sl-words"><span class="kick">Today</span><h2>Wake up knowing what matters</h2><p>What's due, what's out next and what's posting, on one screen.</p></div>
+      <div class="sl-mock"><div class="mk">
+        <div class="mk-bar"><b>Today</b><span data-today></span></div>
+        <div class="mk-list">
+          <div class="mk-row" style="--i:0"><span class="tk"></span><span>Content ready for release week</span><em>Thu</em></div>
+          <div class="mk-row" style="--i:1"><span class="tk"></span><span>Pre-release promo campaign</span><em>Thu</em></div>
+          <div class="mk-row" style="--i:2"><span class="tk"></span><span>Song released</span><em>Fri</em></div>
+          <div class="mk-row" style="--i:3"><span class="tk"></span><span>Update lukegawne.com</span><em>Sat</em></div>
+        </div>
+        <div class="mk-next"><img src="/img/covers/tv-off.jpg" alt=""><div><b>TV OFF</b><span><span data-out="2026-10-16">Out in 5 days</span></span></div></div>
+      </div></div>
+    </div>
+  </div></section>
+  <section class="scene" aria-label="Releases"><div class="scene-in" data-big="Releases">
+    <div class="sl flip">
+      <div class="sl-words"><span class="kick">Releases</span><h2>Set the date. The plan builds itself.</h2><p>Masters, artwork, pitches, lyrics and registrations, each with a day it's due.</p></div>
+      <div class="sl-mock"><div class="mk">
+        <div class="mk-bar"><img class="mk-cov" src="/img/covers/tv-off.jpg" alt=""><b>TV OFF</b><span>Out Fri 16 Oct</span></div>
+        <div class="road" style="--done:0.5">
+          <div class="stop" style="--i:0"><i></i><span>Lyrics</span><em>Done</em></div>
+          <div class="stop" style="--i:1"><i></i><span>Splits</span><em>Done</em></div>
+          <div class="stop now" style="--i:2"><i></i><span>Final files</span><em>Now</em></div>
+          <div class="stop" style="--i:3"><i></i><span>Thumbnail</span><em>Next</em></div>
+          <div class="stop" style="--i:4"><i></i><span>Out</span><em>Fri</em></div>
+        </div>
+      </div></div>
+    </div>
+  </div></section>
+  <section class="scene" aria-label="Post in volume"><div class="scene-in" data-big="Volume">
+    <div class="sl">
+      <div class="sl-words"><span class="kick">Post in volume</span><h2>One shoot. Dozens of clips. Every account.</h2><p>Cut to the beat, lyrics timed in, posted to TikTok, Reels, Shorts and Facebook at once.</p></div>
+      <div class="sl-mock"><div class="fan">
+        <i style="--r:-14deg;--x:-118px;--i:0"><img src="/img/clips/i-m-not-okay-city-view.jpg" alt="" loading="lazy"><b>City view</b></i>
+        <i style="--r:-5deg;--x:-40px;--i:1"><img src="/img/clips/i-m-not-okay-head-down.jpg" alt="" loading="lazy"><b>Head down</b></i>
+        <i style="--r:5deg;--x:40px;--i:2"><img src="/img/clips/iceman-bear-and-gawne.jpg" alt="" loading="lazy"><b>The bear</b></i>
+        <i style="--r:14deg;--x:118px;--i:3"><img src="/img/clips/iceman-mascot-dance.jpg" alt="" loading="lazy"><b>Mascot dance</b></i>
+        <div class="plats"><span style="--i:0">TikTok</span><span style="--i:1">Reels</span><span style="--i:2">Shorts</span><span style="--i:3">Facebook</span></div>
+      </div></div>
+    </div>
+  </div></section>
+  <section class="scene" aria-label="Your community"><div class="scene-in" data-big="Fans">
+    <div class="sl flip">
+      <div class="sl-words"><span class="kick">Your community</span><h2>Every fan, one inbox</h2><p>Comments from every account in one place, answered without opening four apps.</p></div>
+      <div class="sl-mock"><div class="mk chat">
+        <div class="msg" style="--i:0"><span>I can&#x27;t relate but fr got goosebumps 🔥</span><em>Instagram</em></div>
+        <div class="msg" style="--i:1"><span>This is a great way to pay homage to Em. Good job.</span><em>Instagram</em></div>
+        <div class="msg" style="--i:2"><span>He is sooo good!!!Song is fire!!! 🔥💯💯💯🔥</span><em>Instagram</em></div>
+        <div class="msg me" style="--i:3"><span>Thank you 🙏 TV OFF is out Fri 16 Oct</span></div>
+      </div></div>
+    </div>
+  </div></section>
+  <section class="scene" aria-label="Know what works"><div class="scene-in" data-big="Insight">
+    <div class="sl">
+      <div class="sl-words"><span class="kick">Know what works</span><h2>Numbers that tell you what to do next</h2><p>Streams, views and watch time for every song, turned into a plain next step.</p></div>
+      <div class="sl-mock"><div class="mk">
+        <div class="mk-bar"><b>GAWNE streams</b><span>10 Aug to 6 Sep</span></div>
+        <svg class="line" viewBox="0 0 300 110" preserveAspectRatio="none" aria-hidden="true"><polyline pathLength="1" fill="none" stroke="var(--good)" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" points="0.0,63.7 11.1,57.3 22.2,53.5 33.3,44.3 44.4,31.1 55.6,60.8 66.7,85.2 77.8,31.4 88.9,25.6 100.0,24.3 111.1,20.6 122.2,21.2 133.3,69.5 144.4,87.3 155.6,26.9 166.7,20.3 177.8,18.2 188.9,26.9 200.0,34.7 211.1,72.8 222.2,102.0 233.3,59.6 244.4,42.0 255.6,14.6 266.7,13.7 277.8,8.0 288.9,54.9 300.0,92.5"/></svg>
+        <div class="next"><b>Next step</b>Streams drop 23% on Sundays and peak on Fridays. Post the TV OFF clips midweek.</div>
+      </div></div>
+    </div>
+  </div></section>
+  <section class="scene" aria-label="On your phone"><div class="scene-in" data-big="Pocket">
+    <div class="sl flip">
+      <div class="sl-words"><span class="kick">On your phone</span><h2>Your studio in your pocket</h2><p>Tick things off, review new videos and answer your team, with a nudge when something needs you.</p></div>
+      <div class="sl-mock"><div class="ph2">
+        <div class="ph2-screen">
+          <div class="ph2-push"><img src="/icon-128.png" alt=""><div><b>Epic Fury Studio</b><span>6 new TV OFF clips to review</span></div></div>
+          <div class="ph2-tiles">
+            <img style="--i:0" src="/img/clips/iceman-bear-and-gawne.jpg" alt="" loading="lazy">
+            <img style="--i:1" src="/img/clips/iceman-mascot-dance.jpg" alt="" loading="lazy">
+            <img style="--i:2" src="/img/clips/king-kong-hands-up.jpg" alt="" loading="lazy">
+            <img style="--i:3" src="/img/clips/king-kong-live-set.jpg" alt="" loading="lazy">
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div></section>
+  <section class="end">
+    <div><h2>Spend your time<br>on the <em>music</em>.</h2>
+    <p>Invite only for now. We'll email you when there's room.</p>
+    <button class="go" id="endWait" type="button">Join the waiting list</button></div>
   </section>
-
-  <footer>
-    <span>Epic Fury Studio</span>
-    <a href="/privacy">Privacy Policy</a>
-    <a href="/terms">Terms of Service</a>
-  </footer>
-
 </div>
+
+<footer>
+  <span>© 2026 Epic Fury Studio</span><span class="sp"></span>
+  <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="#accounts" id="accLink">Your accounts</a><a href="/data-deletion">Data deletion</a>
+</footer>
+
+<dialog class="prose sheet" id="accounts" aria-labelledby="accH">
+  <div class="sheet-top"><h2 id="accH">Your accounts</h2><button class="x" type="button" id="accClose" aria-label="Close">✕</button></div>
+  <p>You sign in on the platform's own page (TikTok, YouTube, Instagram or Facebook) and approve the connection there. The app never sees your password. The access token it receives is stored on your own computer.</p>
+  <div class="note"><p>Nothing is posted unless a person chooses to post it. The app does not read your feed, your messages or your browsing activity, and it does not post on a schedule you did not set.</p></div>
+  <h3>Why it asks to read as well as publish</h3>
+  <p>For the accounts you connect, the app also asks for <strong>read-only</strong> access to that account's own details and its own performance figures. On YouTube that means two things and no more:</p>
+  <ul>
+    <li><strong>See your YouTube account</strong>: the channel's name, its video list and its public counts, so a video the app published is matched to the right channel.</li>
+    <li><strong>See your YouTube Analytics reports</strong>: views, watch time, traffic sources and audience figures for that channel's own videos.</li>
+  </ul>
+  <p>These are read-only and cannot change, upload or delete anything. A channel can be connected for analytics alone, with no ability to publish to it. A channel connected for publishing also lets the app add the song's lyrics to an uploaded video as subtitles, and post a reply to a comment when a team member presses Reply. It never edits or deletes anything on the channel.</p>
+  <p>The figures stay on the Mac that read them and are shared only with members of the same team who have access to that artist. They are not sold or used for advertising. Disconnect any account inside the app, or revoke access from the platform's own settings (for Google accounts, at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>). The <a href="/privacy">Privacy Policy</a> lists everything that is stored and where.</p>
+</dialog>
+
+<script src="/home.js" defer></script>
 </body>
 </html>

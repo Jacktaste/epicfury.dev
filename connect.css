@@ -6,29 +6,29 @@
  * Everything here is either the code or the one control that copies it. */
 
 :root {
-  color-scheme: light dark;
-  --bg: #f6f6f7;
-  --card: #ffffff;
-  --line: #e2e2e5;
-  --ink: #16161a;
-  --dim: #6b6b74;
-  --accent: #2f6df6;
+  /* The app's own colours: dark by default, light when the visitor's system is. */
+  color-scheme: dark light;
+  --bg: #0a0e1c;
+  --card: #141828;
+  --line: rgba(176, 150, 255, .16);
+  --ink: #f1eefb;
+  --dim: #b9b4d0;
+  --accent: #b07bff;
   --accent-ink: #ffffff;
-  --good: #1a7f4b;
-  --warn: #b4342a;
+  --good: #46c98a;
+  --warn: #ff7a6e;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --bg: #101013;
-    --card: #1a1a1f;
-    --line: #2b2b33;
-    --ink: #f2f2f5;
-    --dim: #9a9aa6;
-    --accent: #5b8cff;
-    --accent-ink: #0b0b0e;
-    --good: #46c98a;
-    --warn: #ff7a6e;
+    --bg: #f2f0f8;
+    --card: #ffffff;
+    --line: rgba(60, 30, 120, .14);
+    --ink: #17132b;
+    --dim: #5c5679;
+    --accent: #6a1bd1;
+    --good: #1a7f4b;
+    --warn: #b4342a;
   }
 }
 
@@ -43,7 +43,7 @@ body {
   justify-content: center;
   background: var(--bg);
   color: var(--ink);
-  font: 400 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font: 400 16px/1.45 "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -61,8 +61,10 @@ main {
 }
 
 h1 {
-  font-size: 21px;
-  font-weight: 600;
+  font-family: "Plus Jakarta Sans", -apple-system, system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -.01em;
   margin: 0 0 18px;
 }
 
@@ -128,3 +130,8 @@ noscript {
   font-size: 14px;
   color: var(--dim);
 }
+
+/* Arrives the way the app's sheets do; still for anyone who asks for less motion. */
+main { animation: rise .45s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) scale(.985); } }
+@media (prefers-reduced-motion: reduce) { main { animation: none; } }

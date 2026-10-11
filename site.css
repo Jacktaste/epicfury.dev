@@ -1,37 +1,37 @@
 :root {
-  /* Epic Fury Studio: the flame icon's navy, with its magenta -> violet ->
-     cyan glow as the one accent. One theme: the brand is a dark one. */
+  /* Epic Fury Studio: the app's own colours and type, dark by default and
+     light when the visitor's system is. Flat: no gradients. */
   color-scheme: dark;
-  --ink:      #f1f3ff;
-  --ink-soft: #c3c9ec;
-  --slate:    #8f97c6;
-  --rule:     #1c2560;
-  --paper:    #030923;
-  --card:     #0a1242;
-  --blue:     #4fd8fd;          /* links and small accents: the flame's cyan */
-  --blue-dim: #101a52;
-  --magenta:  #c026fb;
-  --violet:   #5b0cfb;
-  --cyan:     #18d3fc;
-  --fury:     linear-gradient(100deg, #c026fb 0%, #6a12fb 38%, #2a4ff6 68%, #18b8fc 100%);
-  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --ink:      #f1eefb;
+  --ink-soft: #d2cee4;
+  --slate:    #b9b4d0;
+  --rule:     rgba(176, 150, 255, .14);
+  --paper:    #0a0e1c;
+  --card:     #141828;
+  --blue:     #b07bff;          /* links and small accents: the app's purple */
+  --blue-dim: rgba(141, 70, 255, .16);
+  --display: "Plus Jakarta Sans", -apple-system, system-ui, sans-serif;
+  --body: "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: "DM Sans", -apple-system, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --ink: #17132b; --ink-soft: #38334f; --slate: #5c5679;
+    --rule: rgba(60, 30, 120, .14); --paper: #f2f0f8; --card: #ffffff;
+    --blue: #6a1bd1; --blue-dim: rgba(106, 27, 209, .10);
+  }
 }
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background:
-    radial-gradient(60rem 28rem at 15% -6rem, rgba(192, 38, 251, .20), transparent 70%),
-    radial-gradient(54rem 26rem at 90% -4rem, rgba(24, 211, 252, .16), transparent 70%),
-    var(--paper);
-  background-repeat: no-repeat;
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--body);
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -52,10 +52,10 @@ body {
   flex-wrap: wrap;
 }
 .mark { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); }
-.mark img { display: block; width: 30px; height: 30px; }
+.mark img { display: block; width: 30px; height: 30px; border-radius: 8px; }
 .mark b {
   font-family: var(--display);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1rem;
   letter-spacing: -.01em;
 }
@@ -81,7 +81,7 @@ body {
 }
 h1 {
   font-family: var(--display);
-  font-weight: 700;
+  font-weight: 800;
   font-size: clamp(1.9rem, 5.5vw, 2.8rem);
   line-height: 1.05;
   letter-spacing: -.022em;
@@ -124,15 +124,14 @@ a:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-ra
 
 .callout {
   background: var(--card);
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--blue);
+  border-radius: 12px;
   padding: 1.1rem 1.3rem;
   margin: 0 0 1rem;
   font-size: .97rem;
 }
 .callout p:last-child { margin-bottom: 0; }
 
-.tablewrap { overflow-x: auto; margin: 0 0 1rem; border: 1px solid var(--rule); background: var(--card); }
+.tablewrap { overflow-x: auto; margin: 0 0 1rem; border-radius: 12px; background: var(--card); }
 table { border-collapse: collapse; width: 100%; min-width: 33rem; font-size: .9rem; }
 th, td { text-align: left; padding: .7rem .9rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
 th {
@@ -159,3 +158,10 @@ footer {
   gap: .5rem 1.5rem;
 }
 footer a { color: var(--slate); }
+
+/* Pages arrive the way the app's sheets do; still for anyone who asks for less motion. */
+.wrap > :not(.topbar) { animation: rise .5s cubic-bezier(.2, .8, .2, 1) both; }
+.wrap > :nth-child(3) { animation-delay: .04s; }
+.wrap > :nth-child(n+4) { animation-delay: .08s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+@media (prefers-reduced-motion: reduce) { .wrap > * { animation: none; } }
