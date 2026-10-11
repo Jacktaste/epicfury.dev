@@ -8,99 +8,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
-<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/home.css?v=4">
+<link rel="stylesheet" href="/doc.css?v=4">
 <link rel="icon" href="/icon.png">
-<style>
-  .code-box {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    padding: 1rem 1.1rem;
-    margin: 0 0 1rem;
-  }
-  .code-label {
-    font-family: var(--display);
-    font-size: .68rem;
-    font-weight: 600;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--slate);
-    margin: 0 0 .6rem;
-  }
-  .code-val {
-    font-family: var(--mono);
-    font-size: .84rem;
-    line-height: 1.5;
-    word-break: break-all;
-    color: var(--ink);
-    margin: 0 0 .9rem;
-    user-select: all;
-  }
-  button {
-    font-family: var(--display);
-    font-size: .85rem;
-    font-weight: 600;
-    color: #fff;
-    background: #6a1bd1;
-    border: none;
-    border-radius: 8px;
-    padding: .6rem 1.1rem;
-    cursor: pointer;
-  }
-  button:hover { filter: brightness(1.08); }
-  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-  button[data-done] { background: #1a8f5a; }
-  .steps { counter-reset: s; list-style: none; padding: 0; margin: 0 0 1rem; }
-  .steps li {
-    counter-increment: s;
-    display: flex;
-    gap: .8rem;
-    margin-bottom: .7rem;
-  }
-  .steps li::before {
-    content: counter(s);
-    font-family: var(--mono);
-    font-size: .75rem;
-    color: var(--blue);
-    border: 1px solid var(--rule);
-    border-radius: 50%;
-    width: 1.6rem; height: 1.6rem;
-    display: grid; place-items: center;
-    flex: none;
-  }
-  .err { color: #c0392b; }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .err { color: #ff8b7a; }
-  }
-  :root[data-theme="dark"] .err { color: #ff8b7a; }
-</style>
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("rv"),setTimeout(function(){if(!document.documentElement.dataset.rvok)document.querySelectorAll(".doc section,.doc .card").forEach(function(c){c.classList.add("in")})},4000)</script>
 </head>
 <body>
-<div class="wrap">
-
-  <div class="topbar">
-    <a class="mark" href="/">
-      <img src="/icon-128.png" alt="">
-      <b>Epic Fury Studio</b>
-    </a>
-    <nav>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-    </nav>
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="/"><img src="/icon-128.png" alt="">Epic Fury Studio</a>
+    <nav><a class="wide" href="/">Download</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav>
   </div>
+</header>
+<main class="doc">
 
   <p class="eyebrow">TikTok</p>
   <h1 id="head">Almost there</h1>
   <p class="lede" id="lede">Copy the line below and paste it into Epic Fury Studio to finish connecting your account.</p>
 
   <div id="ok">
-    <div class="code-box">
+    <div class="code-box card">
       <p class="code-label">Paste this into Epic Fury Studio</p>
       <p class="code-val" id="val">reading…</p>
       <button id="copy" type="button">Copy</button>
     </div>
 
-    <ol class="steps">
+    <ol class="steps card">
       <li>Go back to Epic Fury Studio — it is waiting on the <b>Connect TikTok</b> screen.</li>
       <li>Paste the line above into the box.</li>
       <li>That is it. You can close this page.</li>
@@ -112,20 +45,16 @@
   </div>
 
   <div id="bad" hidden>
-    <div class="callout">
+    <div class="card">
       <p class="err" id="badmsg">TikTok did not return an authorisation code.</p>
       <p>Start the connection again from inside Epic Fury Studio. If it keeps happening, the app's TikTok settings may need attention.</p>
     </div>
   </div>
-
-  <footer>
-    <span>Epic Fury Studio</span>
-    <a href="/privacy">Privacy Policy</a>
-    <a href="/terms">Terms of Service</a>
-  </footer>
-
-</div>
-
+</main>
+<footer>
+  <span>© 2026 Epic Fury Studio</span><span class="sp"></span>
+  <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/#accounts">Your accounts</a><a href="/data-deletion">Data deletion</a>
+</footer>
 <script>
   // Everything here stays in the page. Nothing is sent anywhere: the code is
   // shown so it can be pasted into the desktop app, which is what exchanges it.
@@ -171,5 +100,6 @@
     });
   })();
 </script>
+<script src="/doc.js?v=4" defer></script>
 </body>
 </html>

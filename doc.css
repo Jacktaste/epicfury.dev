@@ -1,0 +1,77 @@
+/* epicfury.dev text pages (Privacy, Terms, Delete your data, Your own studio, the connected pages).
+   Loaded after home.css, so the tokens, glass bar and footer are the home page's own. */
+:root{--ink:var(--text);--rule:var(--line2);--slate:var(--faint);--blue:var(--accent);--mono:var(--sans);--paper:var(--bg)}
+body{margin:0;min-height:100svh;display:flex;flex-direction:column}
+.doc{width:100%;max-width:860px;margin:0 auto;padding:clamp(36px,7vw,72px) 20px 56px;flex:1}
+
+/* head: the home hero's type, the beta pill's purple */
+.doc-head{margin:0 0 26px}
+.eyebrow{display:inline-flex;align-items:center;margin:0 0 18px;padding:5px 12px;border-radius:99px;background:var(--accent-soft);color:var(--accent);font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:0;text-transform:none}
+.doc h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,5.4vw,58px);line-height:1.02;letter-spacing:-.03em;margin:0 0 16px;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:0;font-size:13.5px;font-weight:600;color:var(--faint)}
+.meta span{padding:5px 12px;border-radius:99px;background:var(--card);box-shadow:var(--p1)}
+.lede{font-size:clamp(17px,2vw,19px);line-height:1.6;color:var(--dim);margin:0 0 30px;max-width:720px}
+.lede strong{color:var(--text)}
+
+/* each section is a glass card that rises in and lifts on hover */
+.doc section,.card{position:relative;background:color-mix(in srgb,var(--card) 86%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);border:1px solid var(--line);border-radius:18px;box-shadow:var(--p1);padding:22px 26px;margin:0 0 14px;transition:transform .35s var(--spring),box-shadow .25s var(--ease),opacity .5s var(--ease)}
+.doc section:hover,.card:hover{transform:translateY(-2px);box-shadow:var(--p1h)}
+.rv .doc section:not(.in),.rv .doc .card:not(.in){opacity:0;transform:translateY(18px) scale(.985)}
+.rv .doc section.in,.rv .doc .card.in{transition:transform .6s var(--spring),box-shadow .25s var(--ease),opacity .5s var(--ease)}
+.doc h2{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em;margin:0 0 10px;display:flex;align-items:center;gap:12px}
+.doc h2 .num{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:800}
+.doc p,.doc li{color:var(--dim);font-size:15.5px;line-height:1.65}
+.doc p{margin:0 0 12px}
+.doc p:last-child{margin-bottom:0}
+.doc strong{color:var(--text)}
+.doc ul,.doc ol{margin:0 0 12px;padding-left:22px}
+.doc li{margin-bottom:6px}
+.doc li::marker{color:var(--accent);font-weight:700}
+
+/* callouts sit in their card as a purple-edged note, not another box */
+.callout{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:14px 0 0}
+.callout p{color:var(--text)}
+
+/* tables: glass rows, no inner box */
+.tablewrap{overflow-x:auto;margin:16px -26px 0;padding:0 26px}
+.doc table{border-collapse:collapse;width:100%;min-width:34rem;font-size:14.5px}
+.doc th,.doc td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.doc th{font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--faint);white-space:nowrap}
+.doc th:first-child,.doc td:first-child{padding-left:0}
+.doc td{color:var(--dim)}
+.doc td:first-child{color:var(--text);font-weight:600}
+.doc tr:last-child td{border-bottom:none}
+
+/* TikTok connected */
+.code-box{margin:0 0 14px}
+.code-label{font-family:var(--display);font-weight:700;font-size:13px;color:var(--accent);margin:0 0 8px}
+.code-val{font-size:14px;line-height:1.5;word-break:break-all;color:var(--text);margin:0 0 14px;user-select:all}
+.doc button#copy{font:inherit;font-weight:700;font-size:15px;color:var(--on-fill);background:var(--fill);border:0;border-radius:8px;padding:10px 18px;cursor:pointer;box-shadow:var(--key-edge)}
+.doc button#copy:hover{background:var(--fill-press)}
+.doc button#copy[data-done]{background:var(--good);color:#fff}
+.steps{counter-reset:s;list-style:none;padding:0!important;margin:0}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:13px}
+.err{color:var(--warn)!important}
+
+/* Instagram & Facebook connected (connect.js fills #out) */
+.copy{width:100%;display:block;text-align:left;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:var(--p1);color:var(--text);font:inherit;cursor:pointer;transition:transform .3s var(--spring),box-shadow .2s var(--ease)}
+.copy:hover{transform:translateY(-2px);box-shadow:var(--p1h)}
+.copy .label{display:block;font-family:var(--display);font-size:14px;font-weight:700;color:var(--accent);margin-bottom:6px}
+.copy[data-done="1"] .label{color:var(--good)}
+.copy .code{display:block;font-size:13px;line-height:1.5;color:var(--dim);word-break:break-all}
+.where{margin:14px 0 0;font-size:14px;color:var(--faint)}
+.bad{padding:16px 18px;border-left:3px solid var(--warn);border-radius:14px;background:var(--card);box-shadow:var(--p1);font-size:14.5px;word-break:break-word}
+noscript{display:block;font-size:14px;color:var(--faint)}
+
+@media (max-width:600px){.doc section,.card{padding:18px 18px}.tablewrap{margin-inline:-18px;padding-inline:18px}}
+@media (max-width:600px){
+  .tablewrap{overflow:visible}
+  .doc table,.doc tbody,.doc tr,.doc td{display:block;min-width:0;width:100%}
+  .doc thead{display:none}
+  .doc tr{padding:12px 0;border-bottom:1px solid var(--line)}
+  .doc tr:last-child{border-bottom:0}
+  .doc td{padding:2px 0;border:0}
+  .doc td:first-child{margin-bottom:4px}
+  .doc td+td{font-size:14px}
+}

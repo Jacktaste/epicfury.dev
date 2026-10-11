@@ -74,9 +74,9 @@ function onScroll() {
     const e = calm() ? 1 : cl(1 - r.top / H), p = cl(-r.top / (r.height - H)), x = calm() ? 0 : cl((p - .78) / .22);
     sl.style.setProperty('--e', e.toFixed(3)); sl.style.setProperty('--x', x.toFixed(3));
     inn.style.setProperty('--e', (e - x).toFixed(3));
-    const live = e > .85 && x < .5;
+    const live = e > .4 && x < .5;
     if (live && !sl.dataset.live) { sl.dataset.live = '1'; play(sl); }
-    else if (!live && sl.dataset.live && (e < .3 || x > .9)) { delete sl.dataset.live; sl.classList.remove('on'); }
+    else if (!live && sl.dataset.live && (e < .15 || x > .9)) { delete sl.dataset.live; sl.classList.remove('on'); }
   }
 }
 addEventListener('scroll', onScroll, { passive: true });

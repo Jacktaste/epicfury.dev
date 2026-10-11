@@ -348,6 +348,14 @@ footer{border-top:1px solid var(--line);padding-block:22px;display:flex;flex-wra
 footer .sp{flex:1}
 footer a{color:var(--dim)}
 
+/* Before a scene's mock plays, everything it animates waits in its first frame, so nothing shows finished and then restarts. */
+.sl:not(.on) .mk-row .tk:after,.sl:not(.on) .stop i{transform:scale(0);opacity:0}
+.sl:not(.on) .mk-row span:nth-child(2){color:var(--text);text-decoration-color:transparent}
+.sl:not(.on) .road:after{transform:scaleX(0)}
+.sl:not(.on) .fan i,.sl:not(.on) .msg,.sl:not(.on) .next,.sl:not(.on) .ph2-push,.sl:not(.on) .ph2-tiles i,.sl:not(.on) .ph2-tiles img{opacity:0}
+.sl:not(.on) .plats span{background:var(--card3);color:var(--dim);transform:scale(.85)}
+.sl:not(.on) .line polyline{stroke-dashoffset:1}
+@media (prefers-reduced-motion:reduce){.sl:not(.on) *{opacity:1!important;transform:none!important;stroke-dashoffset:0!important}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.float{transform:none!important}}
 
 /* GAWNE's real covers and clip stills inside the mocks */
