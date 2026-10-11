@@ -35,7 +35,7 @@
 
   var body = document.body;
   var platform = body.getAttribute('data-platform') || 'That account';
-  var where = body.getAttribute('data-where') || 'Settings › Connections';
+  var where = body.getAttribute('data-where') || 'Settings › Social accounts';
   var out = document.getElementById('out');
   if (!out) return;
 

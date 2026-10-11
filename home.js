@@ -1,6 +1,9 @@
 /* epicfury.dev home. The download asks only for an email: the login server
-   hands a 15-minute link to an address that is on an account, and says so
-   when it isn't, so the waiting list can take over with the email already in. */
+   emails a link to an address that is on an account and answers the same
+   either way, so the page shows "check your inbox" and keeps the waiting list
+   and setup code in reach. While the server can't send email it says so
+   (mail_off) and the setup code takes over. A waiting-list confirmation link
+   lands here as #confirm=<token>. */
 (function () {
 'use strict';
 const API = 'https://epicfury-roster-api.epicfury.workers.dev';
@@ -112,8 +115,10 @@ form.addEventListener('submit', async e => {
   go.disabled = true; lab.innerHTML = DOTS;
   try {
     const r = await post('/v2/download/link', { email: v, what: 'app' });
+    if (r.ok && r.d.sent) { showSent(v); return; }
     if (r.ok) { showDone(r.d); return; }
     if (r.d.code === 'no_account') { showWait(v, true); return; }
+    if (r.d.code === 'mail_off') { $('toCode').click(); return; }
     warn(r.status === 429 ? 'Too many tries. Wait a few minutes.' : (r.d.error || 'That didn’t work. Try again.'));
   } catch {
     warn('The download server didn’t answer. Try again in a minute.');
@@ -122,10 +127,31 @@ form.addEventListener('submit', async e => {
   }
 });
 
+const TICK = '<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>';
+const MAILED = '<span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>';
+/* a card in a form's place: an icon, a bold line, a quieter one */
+function note(icon, head, line) {
+  const el = document.createElement('div');
+  el.className = 'wait';
+  el.innerHTML = '<div class="onlist">' + icon + '<div><b></b><span></span></div></div>';
+  el.querySelector('b').textContent = head;
+  el.querySelector('.onlist div span').textContent = line;
+  return el;
+}
+
+/* the email went: the same card whether or not it is on an account */
+function showSent(v) {
+  const card = note(MAILED, 'Check your inbox', 'If ' + v + ' is on an account, its download link is there.');
+  card.id = 'sent';
+  form.hidden = true; $('cform').hidden = true; say.hidden = true; specs.hidden = true;
+  form.after(card); pop(card);
+}
+
 /* not invited: the key turns into the waiting list, with their email already in it */
 function showWait(v, refused) {
-  $('waitHead').textContent = refused ? 'This email isn’t invited yet' : 'Join the waiting list';
+  $('waitHead').textContent = refused ? 'No account has this email yet' : 'Join the waiting list';
   wemail.value = v || '';
+  const sent = $('sent'); if (sent) sent.remove();
   say.hidden = true; form.hidden = true; $('cform').hidden = true; $('toCode').textContent = 'Setup code'; invite.hidden = true; specs.hidden = true; wait.hidden = false; pop(wait);
   (v ? wgo : wemail).focus();
 }
@@ -142,10 +168,9 @@ wform.addEventListener('submit', async e => {
   try {
     const r = await post('/v2/waitlist', { email: v, news });
     if (!r.ok) throw new Error(r.d.error || '');
-    const done = document.createElement('div');
-    done.className = 'wait';
-    done.innerHTML = '<div class="onlist"><span class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>You’re on the list</b><span></span></div></div>';
-    done.querySelector('.onlist span').textContent = 'We’ll email ' + v + ' when there’s room.';
+    const done = r.d.confirm
+      ? note(MAILED, 'Check your inbox', 'Confirm ' + v + ' to keep your place.')
+      : note(TICK, 'You’re on the list', 'We’ll email ' + v + ' when there’s room.');
     wait.replaceWith(done); pop(done);
   } catch (err) {
     wgo.disabled = false; wlab.textContent = 'Join';
@@ -153,9 +178,26 @@ wform.addEventListener('submit', async e => {
   }
 });
 
+/* a waiting-list confirmation link: the token goes back to the server, never in a URL it logs */
+const conf = /^#confirm=([A-Za-z0-9_-]{43})$/.exec(location.hash);
+if (conf) {
+  history.replaceState(null, '', location.pathname + location.search);
+  post('/v2/waitlist/confirm', { token: conf[1] }).then(r => {
+    if (r.ok) {
+      const card = note(TICK, 'You’re on the list', 'We’ll email you when there’s room.');
+      form.hidden = true; invite.hidden = true; specs.hidden = true;
+      form.after(card); pop(card);
+    } else {
+      showWait('', false);
+      $('waitHead').textContent = 'That link has expired';
+    }
+  }).catch(() => warn('The download server didn’t answer. Try again in a minute.'));
+}
+
 /* invited with a setup code (before members could add an email): name and code, same download */
 const cform = $('cform'), cgo = $('cgo'), clab = $('clab');
 $('toCode').addEventListener('click', () => {
+  const sent = $('sent'); if (sent) { sent.remove(); specs.hidden = false; }
   const on = cform.hidden;
   cform.hidden = !on; form.hidden = on; say.hidden = true;
   $('toCode').textContent = on ? 'Email' : 'Setup code';
