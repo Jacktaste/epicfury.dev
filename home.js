@@ -114,6 +114,10 @@ form.addEventListener('submit', async e => {
   if (!OK.test(v)) { email.focus(); shake(form); return; }
   go.disabled = true; lab.innerHTML = DOTS;
   try {
+    /* open download (a studio starting itself): the installer straight away
+       while the login server allows it; 404 when it is off, then the email way */
+    const o = await post('/v2/download/link', { open: true, what: 'app' });
+    if (o.ok) { showDone(o.d); return; }
     const r = await post('/v2/download/link', { email: v, what: 'app' });
     if (r.ok && r.d.sent) { showSent(v); return; }
     if (r.ok) { showDone(r.d); return; }
