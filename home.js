@@ -88,7 +88,7 @@ onScroll();
 $('cue').addEventListener('click', () => scenes[0].scrollIntoView({ behavior: calm() ? 'auto' : 'smooth' }));
 $('endWait').addEventListener('click', () => {
   scrollTo({ top: 0, behavior: calm() ? 'auto' : 'smooth' });
-  setTimeout(() => showWait($('email').value.trim(), false), calm() ? 0 : 500);
+  setTimeout(() => $('email').focus(), calm() ? 0 : 500);
 });
 
 /* the email key */
